@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ClasesController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RouteingController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+Route::get("/",[HomeController::class,"home"])->name("home");
+
+Route::match(["POST","GET"],"/student",[StudentController::class,"store"])->name("student");
+
+Route::prefix("admin")->group(function(){
+    Route::get("/",[AdminController::class,"home"])->name('admin.dashboard');
+    Route::resource("clases",ClasesController::class);
+    Route::resource("teacher",TeacherController::class);
+    Route::resource("staff",StaffController::class);
+    Route::resource("routing",RouteingController::class);
+    Route::get("student/index",[StudentController::class,"index"])->name("student.index");
+    Route::resource("subject",SubjectController::class);
+    Route::get("/student/newaddmission",[AdminController::class,"newAddmission"])->name("student.newaddmission");
+    Route::get("/student/approveAddmissionedit/{id}",[AdminController::class,"approveAddmissionEdit"])->name("student.approveAddmissionedit");
+    Route::post("/student/approveAddmission/{id}",[AdminController::class,"approveAddmission"])->name("student.approveAddmission");
+    Route::get("/class/student/{clases_id}",[AdminController::class,"viewStudent"])->name("student.viewstudent");
+    Route::get("/class/routing/{id}",[RouteingController::class,"viewRouting"])->name("class.viewrouting");
+    Route::post("/class/student/fetch-student",[StudentController::class,"fetchStudent"]);
+
+});
