@@ -24,8 +24,10 @@ class StudentController extends Controller
     }
 
     public function fetchStudent(Request $request)
+
     {
-        $data['students'] = Student::where("studentname","LIKE","%$request->name%")->get();
+        
+        $data['students'] = Student::where("studentname","LIKE",'%'.$request->student_id.'%')->get();
         return response()->json($data);
     }
     public function store(Request $request)

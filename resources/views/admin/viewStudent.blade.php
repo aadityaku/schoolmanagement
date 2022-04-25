@@ -6,11 +6,13 @@
         <h2 class="text-warning text-center">Manage Students</h2>
     </div>
     <div class="col-3">
-        <form action="" method="POST">
-            @csrf
-            <input type="search" class="form-control" placeholder="Serach here students" id="searchstudent">
-            <input type="submit" class="btn btn-success" hidden>
+        <form action="" method="get" autocomplete="off" class="navbar-form navbar-left">
+           
+                <input type="text" class="form-control" id="searchstudent"  placeholder="Search">
+               
+            
         </form>
+      
     </div>
 </div>
 
@@ -38,7 +40,7 @@
                     <td>{{ $s->fathername}}</td>
                     <td>{{ $s->dob}}</td>
                     <td>{{ $s->age}}</td>
-                    <td>{{ $s->clases_id}}</td>
+                    <td >{{ $s->clases_id}}</td>
                     <td>{{ $s->gender}}</td>
                     <td>{{ $s->contact}}</td>
                     <td>{{ $s->address}}</td>
@@ -54,15 +56,16 @@
             @endforeach
      
                </tbody>
-                   
+           
             </table>
    @section('js')
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script>
        $(document).ready(function(){
-           $('#searchstudent').on('change',function(){
+           $('#searchstudent').on('keyup',function(){
               var idmanagestudent=this.value;
               $('#managestudent').html('');
+             
               $.ajax({
                 url: "{{ url('/admin/class/student/fetch-student')}}",
                 type:"POST",
@@ -72,7 +75,9 @@
                 },
                 dataType:'json',
                 success:function(res){
+                    $('#managestudent').html('');
                     $.each(res.students,function(key,value){
+                    
                       $('#managestudent').append('<tr>'
                         + '<td>' + value.roll + '</td>'
                         + '<td>' + value.studentname + '</td>'
@@ -87,8 +92,7 @@
                         );
                     });
                 }
-              });
-
+              })
            });
        });
    </script>
