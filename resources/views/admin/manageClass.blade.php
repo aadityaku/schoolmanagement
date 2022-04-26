@@ -25,9 +25,8 @@
                             <td>{{ $c->newadmissionfee}}</td>
                             <td>{{ $c->readdmissionfee}}</td>
                             <td>{{ $c->monthlyfee}}</td>
-                            <td>
-                             
-                            </td>
+                            <td>{{ $c->bookrate}}</td>
+                            
                             <td>
                                 <a href="" class="btn btn-danger">X</a>
                                 <a href="" class="btn btn-success">Edit</a>
@@ -71,6 +70,13 @@
                             <label for="">Monthly Fee</label>
                             <input type="text" name="monthlyfee" value="{{ old('monthlyfee') }}" class="form-control @error('monthlyfee') is-valid @enderror">
                             @error('monthlyfee')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Book And Acceoseries</label>
+                            <input type="text" name="bookrate" value="{{ old('bookrate') }}" class="form-control @error('bookrate') is-valid @enderror">
+                            @error('bookrate')
                                 <p class="small text-danger">{{ $message}}</p>
                             @enderror
                         </div>

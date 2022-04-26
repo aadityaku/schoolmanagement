@@ -8,11 +8,7 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
       $data['teachers']=Teacher::all();
@@ -20,25 +16,16 @@ class TeacherController extends Controller
       return view("admin/manageTeacher",$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        $request->validate([
+        
+       $request->validate([
             'teachername'=>'required',
             'subject_id'=>'required',
             'resume'=>'required',
@@ -48,6 +35,7 @@ class TeacherController extends Controller
             'dob'=>'required',
             'monthlyfee'=>'required',
         ]);
+       
         $data=new Teacher();
         $data->teachername=$request->teachername;
         $data->subject_id=$request->subject_id;
@@ -58,6 +46,7 @@ class TeacherController extends Controller
         $data->dob=$request->dob;
         $data->monthlyfee=$request->monthlyfee;
         $data->save();
+       
         return redirect()->route("teacher.index");
     }
 

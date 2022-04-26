@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-9">
-        <h2 class="text-warning text-center">Manage Students</h2>
+        <h2 class="text-warning text-center">Manage New Addmission</h2>
     </div>
     <div class="col-3">
         <form action="" method="POST">

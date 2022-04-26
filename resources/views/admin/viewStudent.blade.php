@@ -76,6 +76,7 @@
                 dataType:'json',
                 success:function(res){
                     $('#managestudent').html('');
+                    
                     $.each(res.students,function(key,value){
                     
                       $('#managestudent').append('<tr>'

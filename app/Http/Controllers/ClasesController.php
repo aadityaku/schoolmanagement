@@ -38,7 +38,16 @@ class ClasesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->validate([
+            'classname'=>'required',
+            'teacher_id'=>'required',
+            'newadmissionfee'=>'required',
+            'readdmissionfee'=>'required',
+            'monthlyfee'=>'required',
+            'bookrate'=>'required',
+        ]);
+        Clases::create($data);
+        return redirect()->route("clases.index");
     }
 
     /**

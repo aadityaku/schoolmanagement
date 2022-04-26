@@ -66,9 +66,23 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="">dOB</label>
+                            <input type="date" name="dob" value="{{ old('dob') }}" class="form-control @error('dob') is-valid @enderror">
+                            @error('dob')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="">Monthly Fee</label>
                             <input type="text" name="monthlyfee" value="{{ old('monthlyfee') }}" class="form-control @error('monthlyfee') is-valid @enderror">
                             @error('monthlyfee')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Contact</label>
+                            <input type="text" name="contact" value="{{ old('contact') }}" class="form-control @error('contact') is-valid @enderror">
+                            @error('contact')
                                 <p class="small text-danger">{{ $message}}</p>
                             @enderror
                         </div>
@@ -79,7 +93,7 @@
                                     <option value="{{ $item->id }}">{{ $item->subjectname}}</option>
                                 @endforeach
                             </select>
-                            @error('teacher_id')
+                            @error('subject_id')
                                 <p class="small text-danger">{{ $message}}</p>
                             @enderror
                         </div>
@@ -91,7 +105,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <input type="submit" class="btn btn-success">
+                            <input type="submit" class="btn btn-success w-100">
                         </div>
                     </form>
                 

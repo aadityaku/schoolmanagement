@@ -9,11 +9,7 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $data['students']=Student::all();
@@ -27,7 +23,7 @@ class StudentController extends Controller
 
     {
         
-        $data['students'] = Student::where("studentname","LIKE",'%'.$request->student_id.'%')->get();
+        $data['students'] = Student::where([["studentname","LIKE",'%'.$request->student_id.'%'],['status',"1"]])->orWhere([["roll",$request->student_id],['status',"1"]])->orWhere([["contact","LIKE",'%'.$request->student_id.'%'],["status","1"]])->get();
         return response()->json($data);
     }
     public function store(Request $request)
@@ -35,19 +31,19 @@ class StudentController extends Controller
         
         if($request->method()=="POST"){
            
-            // $request->validate([
-            //     "studentname"=>"required",
-            //     "dob"=>"required",
-            //     "age"=>"required",
-            //     "education"=>"required",
-            //     "fathername"=>"required",
-            //     "gender"=>"required",
-            //     "address"=>"required",
-            //     "distance"=>"required",
-            //     "password"=>"required",
-            //     "contact"=>"required",
-            //     "email"=>"required",
-            // ]);
+            $request->validate([
+                "studentname"=>"required",
+                "dob"=>"required",
+                "age"=>"required",
+                "education"=>"required",
+                "fathername"=>"required",
+                "gender"=>"required",
+                "address"=>"required",
+                "distance"=>"required",
+                "password"=>"required",
+                "contact"=>"required",
+                "email"=>"required",
+            ]);
            
             $data=new Student();
             
@@ -73,47 +69,26 @@ class StudentController extends Controller
        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
+  
     public function show(Student $student)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Student $student)
     {
         $data['student']=$student;
         return view("admin/newAddmissionEdit",$data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, Student $student)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Student $student)
     {
         //

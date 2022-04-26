@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Clases extends Model
 {
     use HasFactory;
+    protected $guarded=[];
+    
     public function class(){
         return $this->hasMany(Student::class,"clases_id","id");
     }
     public function classteacher(){
         return $this->hasOne(Teacher::class,"id","teacher_id");
     }
+    
     protected $table="clases";
+  
 }

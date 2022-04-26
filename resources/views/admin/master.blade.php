@@ -30,7 +30,7 @@
                     <a href="{{ route('subject.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Manage Subject</a>
                     <a href="{{ route('staff.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Staff</a>
                     <a href="{{ route('routing.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Manage Routings</a>
-                    <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Attendance</a>
+                    <a href="{{ route('attendance.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Attendance</a>
                     <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Student Payments</a>
                     <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Class Fee Structure</a>
                     <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Asses Tracking</a>

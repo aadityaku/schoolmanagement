@@ -31,7 +31,7 @@
         <div class="col-3">
             <div class="card bg-danger">
                 <div class="card-body">
-                    <h2>New Addmission</h2>
+                    <h2>New Addmissions</h2>
                     <h2>{{ $totalnewaddmission}}</h2>
                     <a href="{{ route('student.newaddmission') }}" class="btn  stretched-link bg-dark text-white float-end">View all</a>
                 </div>
