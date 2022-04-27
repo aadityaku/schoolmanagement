@@ -48,40 +48,6 @@ class AdminController extends Controller
         $data['students']=Student::where([['clases_id',$clases_id],["status","1"]])->get();
         return view("admin/viewStudent",$data);
     }
-    public function viewAttendance($clases_id){
-        $students=Student::where([["clases_id",$clases_id],["status","1"]])->get();
-        
-        foreach($students as $s){
-            
-            $attendance=Attendance::where([["student_id",$s->id],['clases_id',$s->clases_id]])->first();
-            
-            // //  if(Carbon::now()->format("Y-m-d") != $a->created_at->format("Y-m-d")){
-            // //     $this->Attendance($a->clases_id);
-            // // } 
-            
-            
-        }
-        $data['dates']=Carbon::now()->format("Y-m-d");
-       
-        
-        $data['attendances']=Attendance::where("clases_id",$clases_id)->get();
-        return view("admin/viewAttendance",$data); 
-       
-    }
-    public function Attendance($clases_id){
-        
-        $students=Student::where([["clases_id",$clases_id],["status","1"]])->get();
-        if($students){
-
-            foreach($students as $s){
-
-                $data=new Attendance();
-                $data->student_id=$s->id;
-                $data->clases_id=$s->clases_id;
-                $data->save();
-            }
-        }
-    }
     
-    
+
 }

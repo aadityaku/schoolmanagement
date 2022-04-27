@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId("student_id")->constrained();
             $table->foreignId("clases_id")->constrained();
             $table->enum("status",["persent","absent"])->default("absent");
+            $table->string("date")->default(null);
             $table->timestamps();
         });
     }

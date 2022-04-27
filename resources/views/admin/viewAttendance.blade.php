@@ -9,8 +9,10 @@
 </div>
 <div class="row mt-3">
     <div class="col-4 mx-auto">
-        <form action="" method="post" class="d-flex">
-            <input type="text" class="form-control" placeholder="Input here Student roll">
+       
+        <form action="{{ route("student.makeattendanceform",['roll'=>$clases_id]) }}" method="POST" class="d-flex">
+            @csrf
+            <input type="text" class="form-control" name="roll" placeholder="Input here Student roll">
             <input type="submit" class="btn btn-success">
         </form>
     </div>
@@ -39,19 +41,25 @@
                     <td>{{ $s->student->gender}}</td>
                     
                     <td>
-                        @if($s->status == "persent")
-                        <a href="" class="btn btn-success disabled">Persent</a>
+                        @if($s->status == "absent")
+                        <a href="{{ route('student.makeattendance',["roll"=>$s->clases_id,"id"=>$s->id])}}" class="btn btn-success">Persent</a>
+                        
+                        
+                        @elseif($s->status == "persent")
+                             <a href="" class="btn btn-warning disabled">Persent</a>
                         
                         @else
-                            <a href="" class="btn btn-danger">Absent</a>
+                            <a href="" class="btn btn-success"><i class="bi bi-check-lg"></i></a> 
                         @endif
+                        
+                        
                     </td>
 
                     
                 </tr>
 
             @endforeach
-    {{$dates}}
+    {{-- {{$dates}} --}}
     {{-- {{$date}} --}}
                </tbody>
          

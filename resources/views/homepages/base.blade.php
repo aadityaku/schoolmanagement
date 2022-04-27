@@ -10,12 +10,13 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-2">
         <div class="container">
             <a href="{{ route('home') }}" class="navbar-brand">School Management</a>
             <ul class="navbar-nav">
-                <li class="nav-item"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="" class="nav-link">About </a></li>
+                <li class="nav-item me-2"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
+                <li class="nav-item me-2"><a href="" class="nav-link">About </a></li>
+                <li class="nav-item me-3"><a href="" class="btn btn-info btn-outline-dark">Online Payment</a></li>
                 <li class="nav-item"><a href="{{ route('student') }}" class="btn btn-warning">Apply for Admission </a></li>
             </ul>
         </div>

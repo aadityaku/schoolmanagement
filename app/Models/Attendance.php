@@ -15,4 +15,7 @@ class Attendance extends Model
     public function attendance(){
         return $this->hasOne(Clases::class,"id","clases_id");
     }
+    public function attendanceclass(){
+        return $this->hasOne(Student::class,"id","student_id");
+    }
 }
