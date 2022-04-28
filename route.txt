@@ -38,8 +38,12 @@ Route::prefix("admin")->group(function(){
     Route::get("/student/approveAddmissionedit/{id}",[AdminController::class,"approveAddmissionEdit"])->name("student.approveAddmissionedit");
     Route::post("/student/approveAddmission/{id}",[AdminController::class,"approveAddmission"])->name("student.approveAddmission");
     Route::get("/class/student/{clases_id}",[AdminController::class,"viewStudent"])->name("student.viewstudent");
-    Route::get("/class/attendance/{roll}",[AdminController::class,"viewAttendance"])->name("student.viewattendance");
+    Route::get("/class/attendance/{roll}",[AttendanceController::class,"viewAttendance"])->name("student.viewattendance");
+    Route::post("/class/form/attendance/{roll}",[AttendanceController::class,"makeAttendanceForm"])->name("student.makeattendanceform");
+    Route::get("/class/attendance/{roll}/{id}",[AttendanceController::class,"makeAttendance"])->name("student.makeattendance");
     Route::get("/class/routing/{id}",[RouteingController::class,"viewRouting"])->name("class.viewrouting");
-    Route::post("/class/student/fetch-student",[StudentController::class,"fetchStudent"]);
-
+    Route::post("/class/student/fetch-student/{id}",[StudentController::class,"fetchStudent"]);
+    Route::get("/student/payment",[StudentController::class,"viewPayment"])->name("class.payment");
+    Route::get("/student/payment/{roll}",[StudentController::class,"viewPaymentStudent"])->name("class.paymentstudent");
+    
 });

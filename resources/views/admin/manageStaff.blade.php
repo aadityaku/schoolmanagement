@@ -68,6 +68,20 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="">Email</label>
+                            <input type="text" name="email" value="{{ old('email') }}" class="form-control @error('email') is-valid @enderror">
+                            @error('email')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Password</label>
+                            <input type="password" name="password" value="{{ old('password') }}" class="form-control @error('password') is-valid @enderror">
+                            @error('password')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="">Contact</label>
                             <input type="text" name="contact" value="{{ old('contact') }}" class="form-control @error('contact') is-valid @enderror">
                             @error('contact')

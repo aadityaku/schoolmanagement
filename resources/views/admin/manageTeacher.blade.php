@@ -87,6 +87,20 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="">Email</label>
+                            <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-valid @enderror">
+                            @error('email')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Password</label>
+                            <input type="password" name="password" value="{{ old('password') }}" class="form-control @error('password') is-valid @enderror">
+                            @error('password')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="">Subject</label>
                             <select name="subject_id" class="form-select">
                                 @foreach ($subjects as $item)

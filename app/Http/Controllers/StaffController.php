@@ -3,26 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Staff;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StaffController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
         $data['staffs']=Staff::all();
         return view("admin/manageStaff",$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         $data['staffs']=Staff::all();
@@ -40,52 +34,53 @@ class StaffController extends Controller
             'gender'=>'required',
             'worktime'=>'required',
             'monthlyfee'=>'required',
+            'email'=>'required|email|unique:users,email',
+            'password'=>'required',
         ]);
-        Staff::create($data);
+        $user=new User();
+        $user->name=$request->staffname;
+        $user->email=$request->email;
+        $user->userType=2;
+        $user->password=Hash::make($request->password);
+        $user->save();
+        $user_id=$user->id;
+
+        $data=new Staff();
+        $data->staffname=$request->staffname;
+        $data->job=$request->job;
+        $data->contact=$request->contact;
+        $data->address=$request->address;
+        $data->gender=$request->gender;
+        $data->worktime=$request->worktime;
+        $data->user_id=$user_id;
+        $data->save();
+
         return redirect()->route("staff.index");
 
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Staff  $staff
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function staffDashboard(){
+        
+    }
+    
     public function show(Staff $staff)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Staff  $staff
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Staff $staff)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Staff  $staff
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, Staff $staff)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Staff  $staff
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Staff $staff)
     {
         //

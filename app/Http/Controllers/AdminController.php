@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendance;
 use App\Models\Clases;
+use App\Models\Payment;
 use App\Models\Staff;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use App\Http\Controllers\StudentController;
 use DateTime;
 use Illuminate\Support\Carbon;
 
 class AdminController extends Controller
 {
     public function home(Request $request){
+        StudentController::studentPayment();
         $data['totalStudent']=Student::where("status","1")->count();
         $data['totalnewaddmission']=Student::where("status","0")->count();
         $data['totalTeacher']=Teacher::all()->count();
@@ -48,6 +51,7 @@ class AdminController extends Controller
         $data['students']=Student::where([['clases_id',$clases_id],["status","1"]])->get();
         return view("admin/viewStudent",$data);
     }
-    
+   
+   
 
 }

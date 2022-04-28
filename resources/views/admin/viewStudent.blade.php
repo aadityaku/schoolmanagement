@@ -61,13 +61,14 @@
    @section('js')
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script>
+    
        $(document).ready(function(){
            $('#searchstudent').on('keyup',function(){
               var idmanagestudent=this.value;
               $('#managestudent').html('');
              
               $.ajax({
-                url: "{{ url('/admin/class/student/fetch-student')}}",
+                url: "{{ url('/admin/class/student/fetch-student')}}/{{ Request::segment(4)}}",
                 type:"POST",
                 data:{
                     student_id:idmanagestudent,

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->string("teachername");
+            $table->foreignId("user_id")->constrained()->default(null);
             $table->foreignId("subject_id")->constrained();
             $table->string("resume");
             $table->string("contact");

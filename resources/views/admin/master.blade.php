@@ -14,7 +14,12 @@
         <div class="container">
             <a href="" class="navbar-brand">School | Admin</a>
             <ul class="navbar-nav">
-                <li class="nav-item"><a href="" class="nav-link">Logout</a></li>
+                <li class="nav-item">
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <input type="submit" value="Logout" class="btn btn-dark">
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>
@@ -31,9 +36,10 @@
                     <a href="{{ route('staff.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Staff</a>
                     <a href="{{ route('routing.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Manage Routings</a>
                     <a href="{{ route('attendance.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Attendance</a>
-                    <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Student Payments</a>
+                    <a href="{{ route("class.payment") }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Student Payments</a>
                     <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Class Fee Structure</a>
                     <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Asses Tracking</a>
+                    
                </div>
             </div>
             <div class="col-lg-10 mt-3 gx-4">

@@ -16,8 +16,8 @@ class AttendanceController extends Controller
     {
         $data['students']=Student::all();
         $data['teachers']=Teacher::all();
-        $data['clases']=Clases::withcount("class")->get();
-        
+        $data['student']=Student::withcount("studentclass")->where("status","1")->get();
+        $data['class']=Clases::all();
         return view("admin/manageAttendance",$data);
     }
     public function viewAttendance($clases_id){

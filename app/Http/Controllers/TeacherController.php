@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use App\Models\Teacher;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -32,10 +34,19 @@ class TeacherController extends Controller
             'contact'=>'required',
             'address'=>'required',
             'education'=>'required',
+            'email'=>'required|email|unique:users,email',
+            'password'=>'required',
             'dob'=>'required',
             'monthlyfee'=>'required',
         ]);
-       
+        $user=new User();
+        $user->name=$request->teachername;
+        $user->email=$request->email;
+        $user->password=Hash::make($request->password);
+        $user->userType=1;
+        $user->save();
+        $user_id=$user->id;
+
         $data=new Teacher();
         $data->teachername=$request->teachername;
         $data->subject_id=$request->subject_id;
@@ -45,51 +56,36 @@ class TeacherController extends Controller
         $data->education=$request->education;
         $data->dob=$request->dob;
         $data->monthlyfee=$request->monthlyfee;
+        $data->user_id=$user_id;
         $data->save();
        
         return redirect()->route("teacher.index");
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
+   
+   public function teacherDashboard(){
+        return view("teacher/dashboard");
+   }
+   public function login(){
+       return view("teacher/login");
+   }
     public function show(Teacher $teacher)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Teacher $teacher)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, Teacher $teacher)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy(Teacher $teacher)
     {
         //

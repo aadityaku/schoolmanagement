@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
             $table->string("staffname");
+            $table->foreignId("user_id")->constrained()->default(null);
             $table->string("job");
             $table->string("monthlyfee")->nullable();
             $table->string("contact");

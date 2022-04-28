@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("studentname");
             $table->string("dob");
             $table->string("age");
+            $table->foreignId("user_id")->constrained()->default(null);
             $table->foreignId("clases_id")->constrained();
             $table->string("education");
             $table->string("fathername");
