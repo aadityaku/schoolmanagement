@@ -16,6 +16,9 @@ class StudentMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if(!$request->session()->exists("student")){
+            return redirect()->route("student.login");
+        }
         return $next($request);
     }
 }

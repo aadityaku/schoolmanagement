@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
+use App\Models\Clases;
+use App\Models\Routeing;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherController extends Controller
 {
@@ -37,6 +42,10 @@ class TeacherController extends Controller
             'email'=>'required|email|unique:users,email',
             'password'=>'required',
             'dob'=>'required',
+            'linkedin'=>'required',
+            'fblink'=>'required',
+            'insta'=>'required',
+            'image'=>'required',
             'monthlyfee'=>'required',
         ]);
         $user=new User();
@@ -55,6 +64,12 @@ class TeacherController extends Controller
         $data->address=$request->address;
         $data->education=$request->education;
         $data->dob=$request->dob;
+        $data->fblink=$request->fblink;
+        $data->linkedin=$request->linkedin;
+        $data->insta=$request->insta;
+        $fileName=$request->image->getClientOriginalName();
+        $request->image->move(public_path("teacher"),$fileName);
+        $data->image=$fileName;
         $data->monthlyfee=$request->monthlyfee;
         $data->user_id=$user_id;
         $data->save();
@@ -63,10 +78,34 @@ class TeacherController extends Controller
     }
    
    public function teacherDashboard(){
-        return view("teacher/dashboard");
+       $value=session('teacher');
+       
+       $user=User::where('email',$value)->first();
+       $data['teachers']=Teacher::where('user_id',$user->id)->get();
+        
+       $teacher=Teacher::where('user_id',$user->id)->first();
+       
+       $data['clases_id']=Clases::where('teacher_id',$teacher->id)->first();
+       $clases=Clases::where('teacher_id',$teacher->id)->first();
+      
+       AttendanceController::viewAttendance($clases->id);
+      return view("teacher/dashboard",$data);
    }
    public function login(){
        return view("teacher/login");
+   }
+
+   public function viewRouting(Request $request){
+           $value=session('teacher');
+       
+           $user=User::where('email',$value)->first();
+        
+           $teacher=Teacher::where('user_id',$user->id)->first();
+           $subject=Subject::find($teacher->subject_id);
+           
+           $data['routings']=Routeing::where('subject_id',$subject->id)->get();
+           return view("teacher/manageRouting",$data);
+        
    }
     public function show(Teacher $teacher)
     {

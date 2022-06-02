@@ -44,18 +44,29 @@ class ClasesController extends Controller
             'newadmissionfee'=>'required',
             'readdmissionfee'=>'required',
             'monthlyfee'=>'required',
-            'bookrate'=>'required',
+            'image'=>'required',
+            'age'=>'required',
+            'time'=>'required',
+            'seat'=>'required',
         ]);
-        Clases::create($data);
+        $data=new Clases();
+        $data->classname=$request->classname;
+        $data->teacher_id=$request->teacher_id;
+        $data->newadmissionfee=$request->newadmissionfee;
+        $data->readdmissionfee=$request->readdmissionfee;
+        $data->monthlyfee=$request->monthlyfee;
+        $data->age=$request->age;
+        $data->time=$request->time;
+        $data->seat=$request->seat;
+        $data->description=$request->description;
+        $fileName=$request->image->getClientOriginalName();
+        $request->image->move(public_path("class"),$fileName);
+        $data->image=$fileName;
+        $data->save();
         return redirect()->route("clases.index");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Clases  $clases
-     * @return \Illuminate\Http\Response
-     */
+  
     public function show(Clases $clases)
     {
         //

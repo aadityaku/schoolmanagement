@@ -14,7 +14,7 @@
         <div class="container">
             <a href="" class="navbar-brand">School | Staff</a>
             <ul class="navbar-nav">
-                <li class="nav-item"><a href="" class="nav-link">Logout</a></li>
+                <li class="nav-item"><a href="{{ route('staff.logout') }}" class="nav-link">Logout</a></li>
             </ul>
         </div>
     </nav>

@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
@@ -73,8 +74,12 @@ class StudentController extends Controller
             $data->clases_id=$request->clases_id;
             $data->user_id=$user_id;
             $data->save();
-           return redirect()->route("home");
+           
+            $request->session()->put("student",$data->email);
             
+           // $request->session()->flash("msg","<div class='alert alert-success'>Your Admission successfully</div>");
+            return redirect()->route("student.dashboard")->withSuccess('Your Addmission is successfull');
+           
         }
         
         $data['clases']=Clases::all();
@@ -86,6 +91,7 @@ class StudentController extends Controller
         $data['teachers']=Teacher::all();
         $data['student']=Student::withcount("studentclass")->where("status","1")->get();
         $data['class']=Clases::all();
+        $data['payments']=Payment::where('status','due')->get();
         return view("admin/studentPayment",$data);
     }
     public function viewPaymentStudent($clases_id){
@@ -154,9 +160,11 @@ class StudentController extends Controller
 
         }
     }
-   
+   public function login(){
+       return view("student/login");
+   }
     public function studentDashboard(){
-        
+        return view("student/dashboard");
     }
     public function show(Student $student)
     {

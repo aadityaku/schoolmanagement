@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>This is Staff Panel</title>
+    <title>This is Teacher Panel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
@@ -24,10 +24,12 @@
         <div class="row border-top-3">
             <div class="col-lg-2 gx-0 ">
                <div class="list-group list-group-flush">
-                    
+                
                     <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Dashboard</a>
-                    <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Today work</a>
+                    <a href="{{route('homework.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">class homework</a>
+                    <a href="{{route('teacherattendance.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Manage Attendance</a>
                     <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Exam</a>
+                    <a href="{{ route('teacher.viewrouting') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Our Routing</a>
                     <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Manage Result</a>
                     
                </div>

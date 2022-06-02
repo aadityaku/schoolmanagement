@@ -21,7 +21,7 @@
                         <tr>
                             <td>{{ $t->id}}</td>
                             <td>{{ $t->teachername}}</td>
-                            <td>{{ $t->subject_id}}</td>
+                            <td>{{ $t->subject->subjectname}}</td>
                             <td>{{ $t->contact}}</td>
                             <td>{{ $t->education}}</td>
                             <td>{{ $t->dob}}</td>
@@ -42,7 +42,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form action="{{ route('teacher.store') }}" method="POST">
+                    <form action="{{ route('teacher.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="">Teacher Name</label>
@@ -62,6 +62,34 @@
                             <label for="">Education</label>
                             <input type="text" name="education" value="{{ old('education') }}" class="form-control @error('education') is-valid @enderror">
                             @error('education')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Face Booklink</label>
+                            <input type="text" name="fblink" value="{{ old('fblink') }}" class="form-control @error('fblink') is-valid @enderror">
+                            @error('fblink')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Linked In Link</label>
+                            <input type="text" name="linkedin" value="{{ old('linkedin') }}" class="form-control @error('linkedin') is-valid @enderror">
+                            @error('linkedin')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Image</label>
+                            <input type="file" name="image" value="{{ old('image') }}" class="form-control @error('image') is-valid @enderror">
+                            @error('image')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Instagram Link</label>
+                            <input type="text" name="insta" value="{{ old('insta') }}" class="form-control @error('insta') is-valid @enderror">
+                            @error('insta')
                                 <p class="small text-danger">{{ $message}}</p>
                             @enderror
                         </div>

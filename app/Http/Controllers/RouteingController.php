@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Routeing,Student,Teacher,Clases};
+use App\Models\{Routeing,Student,Teacher,Clases, Subject};
 use Illuminate\Http\Request;
 
 class RouteingController extends Controller
@@ -19,6 +19,8 @@ class RouteingController extends Controller
 
     public function viewRouting($id){
         $data['routings']=Routeing::where("clases_id",$id)->get();
+        $data['clases_id']=Clases::find($id);
+        $data['subjects']=Subject::all();
         return view("admin/viewRouting",$data);
     }
     public function create()
@@ -29,7 +31,15 @@ class RouteingController extends Controller
    
     public function store(Request $request)
     {
-        //
+       $data= $request->validate([
+            'period'=>'required',
+            'time'=>'required',
+            'teacherrol'=>'required',
+            'subject_id'=>'required',
+            'clases_id'=>'required',
+        ]);
+        Routeing::create($data);
+        return redirect()->back();
     }
 
     

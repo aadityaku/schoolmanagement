@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
+use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PaymentController extends Controller
 {
@@ -17,11 +20,7 @@ class PaymentController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         //
@@ -35,7 +34,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
 
     /**

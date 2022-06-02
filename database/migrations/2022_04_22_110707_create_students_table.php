@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string("studentname");
             $table->string("dob");
             $table->string("age");
-            $table->foreignId("user_id")->constrained()->default(null);
+            $table->foreignId("user_id")->constrained();
             $table->foreignId("clases_id")->constrained();
             $table->string("education");
             $table->string("fathername");
             $table->string("gender");
+            $table->string("image")->nullable();
             $table->text("address");
             $table->string("roll")->nullable();
             $table->string("addmissionfee")->nullable();

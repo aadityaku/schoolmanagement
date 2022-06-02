@@ -11,4 +11,7 @@ class Payment extends Model
     public function student(){
         return $this->hasOne(Student::class,"id","student_id");
     }
+    public function clases(){
+        return $this->hasOne(Clases::class,"id","clases_id");
+    }
 }

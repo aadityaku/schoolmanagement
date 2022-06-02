@@ -21,7 +21,7 @@
                 <tr class="bg-secondary text-white rounded">
                     <th>Id</th>
                     <th>Subject Name</th>
-                    <th>Class</th>
+                    
                     <th>Book And Accesories</th>
                   
                     <th>Action</th>
@@ -32,7 +32,7 @@
                         <tr>
                             <td>{{ $sub->id}}</td>
                             <td>{{ $sub->subjectname}}</td>
-                            <td>{{ $sub->class}}</td>
+                          
                            <td>{{ $sub->discountbookrate}}  <span class="text-danger ms-2"><del>{{$sub->bookrate}}</del></span></td>
                            
                             <td>

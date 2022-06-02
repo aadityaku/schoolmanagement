@@ -20,7 +20,11 @@ return new class extends Migration
             $table->string("newadmissionfee");
             $table->string("readdmissionfee");
             $table->string("monthlyfee");
-            $table->float("bookrate")->nullable();
+            $table->string("age");
+            $table->string("time");
+            $table->string("seat")->nullable();
+            $table->text("description")->nullable();
+            $table->string("image")->nullable();
             $table->timestamps();
         });
     }

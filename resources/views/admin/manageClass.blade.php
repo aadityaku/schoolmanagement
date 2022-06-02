@@ -12,7 +12,7 @@
                     <th>New AddmissionFee</th>
                     <th>Re AddmissionFee</th>
                     <th>monthly Fee</th>
-                    <th>Total Book Acceoseries Price</th>
+                    <th>Seats Avialable</th>
                     <th>Action</th>
 
                 </tr>
@@ -21,11 +21,11 @@
                         <tr>
                             <td>{{ $c->id}}</td>
                             <td>{{ $c->classname}}</td>
-                            <td>{{ $c->teacher_id}}</td>
+                            <td>{{ $c->classteacher->teachername}}</td>
                             <td>{{ $c->newadmissionfee}}</td>
                             <td>{{ $c->readdmissionfee}}</td>
                             <td>{{ $c->monthlyfee}}</td>
-                            <td>{{ $c->bookrate}}</td>
+                            <td>{{ $c->seat}}</td>
                             
                             <td>
                                 <a href="" class="btn btn-danger">X</a>
@@ -43,7 +43,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form action="{{ route('clases.store') }}" method="POST">
+                    <form action="{{ route('clases.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="">Class Name</label>
@@ -74,9 +74,37 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="">Book And Acceoseries</label>
-                            <input type="text" name="bookrate" value="{{ old('bookrate') }}" class="form-control @error('bookrate') is-valid @enderror">
-                            @error('bookrate')
+                            <label for="">Age period</label>
+                            <input type="text" name="age" value="{{ old('age') }}" class="form-control @error('age') is-valid @enderror">
+                            @error('age')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Time Period</label>
+                            <input type="text" name="time" value="{{ old('time') }}" class="form-control @error('time') is-valid @enderror">
+                            @error('time')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Seats Avialable</label>
+                            <input type="text" name="seat" value="{{ old('seat') }}" class="form-control @error('seat') is-valid @enderror">
+                            @error('seat')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">About Class description</label>
+                            <textarea name="description" rows="5" class="form-control @error('description') is-valid @enderror">{{ old('description') }}</textarea>
+                            @error('description')
+                                <p class="small text-danger">{{ $message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Image</label>
+                            <input type="file" name="image" value="{{ old('image') }}" class="form-control @error('image') is-valid @enderror">
+                            @error('image')
                                 <p class="small text-danger">{{ $message}}</p>
                             @enderror
                         </div>

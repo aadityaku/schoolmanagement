@@ -16,6 +16,9 @@ class StaffMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if(!$request->session()->exists("staff")){
+            return redirect()->route("staff.login");
+        }
         return $next($request);
     }
 }

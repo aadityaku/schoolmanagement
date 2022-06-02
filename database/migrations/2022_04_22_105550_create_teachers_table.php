@@ -20,6 +20,10 @@ return new class extends Migration
             $table->foreignId("subject_id")->constrained();
             $table->string("resume");
             $table->string("contact");
+            $table->string("fblink")->default(null);
+            $table->string("linkedin")->default(null);
+            $table->string("insta")->default(null);
+            $table->string("image")->default(null);
             $table->string("address");
             $table->string("education");
             $table->string("dob");

@@ -6,21 +6,40 @@ use App\Models\Attendance;
 use App\Models\Clases;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {
    
-    public function index()
-    {
+    public function index(Request $request)
+    { 
         $data['students']=Student::all();
         $data['teachers']=Teacher::all();
-        $data['student']=Student::withcount("studentclass")->where("status","1")->get();
-        $data['class']=Clases::all();
-        return view("admin/manageAttendance",$data);
+        //$data['student']=Clases::withcount("student")->get(["studentname","id"]);
+       
+        $data['class']=Clases::withcount("student")->get();
+        if($request->segment(1) =="admin"){
+            return view("admin/manageAttendance",$data);
+            
+        }
+       if($request->segment(1) == "teachers"){
+           $value=session("teacher");
+           $user=User::where('email',$value)->first();
+           
+           $teacher=Teacher::where('user_id',$user->id)->first();
+        
+           $data['clases_id']=Clases::where('teacher_id',$teacher->id)->first();
+           $clases=Clases::where('teacher_id',$teacher->id)->first();
+           $dates=Carbon::now()->format("Y-m-d");
+           $data['attendances']=Attendance::where([['clases_id',$clases->id],['date',$dates]])->get();
+           $this->viewAttendance($clases->id);
+        return view("teacher/manageAttendance",$data);
+        }
+       
     }
-    public function viewAttendance($clases_id){
+   static  public function viewAttendance($clases_id){
         $students=Student::where([["clases_id",$clases_id],["status","1"]])->get();
         if($students){
             
@@ -33,7 +52,7 @@ class AttendanceController extends Controller
              }
              
              else{
-                 echo "this is outer funtion";
+                 
                  $data=new Attendance();
                  $data->student_id=$s->id;
                  $data->clases_id=$s->clases_id;
@@ -92,7 +111,7 @@ class AttendanceController extends Controller
     
     public function store(Request $request)
     {
-        //
+        
     }
 
    

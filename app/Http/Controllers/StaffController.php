@@ -51,6 +51,7 @@ class StaffController extends Controller
         $data->contact=$request->contact;
         $data->address=$request->address;
         $data->gender=$request->gender;
+        $data->monthlyfee=$request->monthlyfee;
         $data->worktime=$request->worktime;
         $data->user_id=$user_id;
         $data->save();

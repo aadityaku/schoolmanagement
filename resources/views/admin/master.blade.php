@@ -27,16 +27,21 @@
         <div class="row border-top-3">
             <div class="col-lg-2 gx-0 ">
                <div class="list-group list-group-flush">
-                    <a href="{{ route('admin.dashboard') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white ">Dashboard</a>
-                    <a href="{{ route('student.newaddmission' ) }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">New Admission</a>
-                    <a href="{{ route('student.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Manage Student</a>
-                    <a href="{{ route('clases.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Manage Class</a>
-                    <a href="{{ route('teacher.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Manage Teacher</a>
-                    <a href="{{ route('subject.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Manage Subject</a>
-                    <a href="{{ route('staff.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Staff</a>
-                    <a href="{{ route('routing.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Manage Routings</a>
-                    <a href="{{ route('attendance.index') }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Attendance</a>
-                    <a href="{{ route("class.payment") }}" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Student Payments</a>
+                    <a href="{{ route('admin.dashboard') }}" class="list-group-item list-group-item-action @php echo Route::current()->getName() == "admin.dashboard"?"bg-primary text-white ":"bg-dark  text-white"; @endphp border-0 fs-5 py-3  ">Dashboard</a>
+                    <a href="{{ route('student.newaddmission' ) }}" class="list-group-item list-group-item-action border-0 @php echo Route::current()->getName() == "student.newaddmission"?"bg-primary text-white ":"bg-dark"; @endphp fs-5 py-3 text-white">New Admission</a>
+                    <a href="{{ route('student.index') }}" class="list-group-item list-group-item-action border-0  @php echo Route::current()->getName() == "student.index"?"bg-primary text-white ":"bg-dark"; @endphp fs-5 py-3 text-white">Manage Student</a>
+                    <a href="{{ route('clases.index') }}" class="list-group-item list-group-item-action border-0  @php echo Route::current()->getName() == "clases.index"?"bg-primary text-white ":"bg-dark"; @endphp fs-5 py-3 text-white">Manage Class</a>
+                    <a href="{{ route('teacher.index') }}" class="list-group-item list-group-item-action border-0  @php echo Route::current()->getName() == "teacher.index"?"bg-primary text-white ":"bg-dark"; @endphp fs-5 py-3 text-white">Manage Teacher</a>
+                    <a href="{{ route('subject.index') }}" class="list-group-item list-group-item-action border-0  @php echo Route::current()->getName() == "subject.index"?"bg-primary text-white ":"bg-dark"; @endphp fs-5 py-3 text-white">Manage Subject</a>
+                    <a href="{{ route('staff.index') }}" class="list-group-item list-group-item-action border-0  @php echo Route::current()->getName() == "staff.index"?"bg-primary text-white ":"bg-dark"; @endphp fs-5 py-3 text-white">Staff</a>
+                    <a href="{{ route('routing.index') }}" class="list-group-item list-group-item-action border-0  @php echo Route::current()->getName() == "routing.index"?"bg-primary text-white ":"bg-dark"; @endphp fs-5 py-3 text-white">Manage Routings</a>
+                    <a href="{{ route('attendance.index') }}" class="list-group-item list-group-item-action border-0  @php echo Route::current()->getName() == "attendance.index"?"bg-primary text-white ":"bg-dark"; @endphp fs-5 py-3 text-white">Attendance</a>
+                    <a href="{{ route("class.payment") }}" class="list-group-item list-group-item-action border-0 @php echo Route::current()->getName() == "class.payment"?"bg-primary text-white ":"bg-dark"; @endphp fs-5 py-3 text-white">Student Payments</a>
+                    <a href="{{ route('blog.index') }} " class="list-group-item list-group-item-action border-0  @php echo Route::current()->getName() == "blog.index"?"bg-primary text-white ":"bg-dark"; @endphp fs-5 py-3 text-white">Manage Blogs</a>
+                    <a href="{{ route('gallery.index')}} " class="list-group-item list-group-item-action border-0  @php echo Route::current()->getName() == "gallery.index"?"bg-primary text-white ":"bg-dark"; @endphp fs-5 py-3 text-white">Manage Gallery</a>
+                    <a href="{{ route('notice.index')}} " class="list-group-item list-group-item-action border-0  @php echo Route::current()->getName() == "notice.index"?"bg-primary text-white ":"bg-dark"; @endphp fs-5 py-3 text-white">Manage Notice</a>
+                    
+                    <a href=" " class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Manage BlogFeedback</a>
                     <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Class Fee Structure</a>
                     <a href="" class="list-group-item list-group-item-action border-0 bg-dark fs-5 py-3 text-white">Asses Tracking</a>
                     

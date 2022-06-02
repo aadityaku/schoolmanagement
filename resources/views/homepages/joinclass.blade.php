@@ -1,12 +1,12 @@
-@extends('homepages/base')
+@extends('homepages/extra')
 
 @section('content')
-    <div class="container mt-3">
+    <div class="container">
         <div class="row">
             <div class="col-lg-6 mx-auto">
-                <div class="card">
+                <div class="card card-lg">
                     <div class="card-body">
-                        <form action="" method="POST">
+                        <form action="{{ route('student') }}" method="POST">
                             
                             @csrf
                             <div class="mb-3">
@@ -84,17 +84,19 @@
                                     <p class="small text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="mb-3">
-                                <label for="">Addmission For</label>
-                                <select name="clases_id" class="form-select">
-                                    @foreach ($clases as $item)
-                                        <option value="{{ $item->id }}">{{ $item->classname}}</option>
-                                    @endforeach
-                                </select>
+                            
+                              
+                                   
+                                   <input type="text" name="clases_id" value="{{$clases_id->id}}" class="form-control" hidden>
+                                   @error('clases_id')
+                                       <p class="small text-danger">{{ $message }}</p>
+                                   @enderror
+                               
+                                {{-- <input type="text" name="clases_id" value="{{$clasesid}}" class="form-control" hidden>
                                 @error('clases_id')
                                     <p class="small text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
+                                @enderror --}}
+                          
                             <div class="mb-3">
                                 <label for="">Contact Student/Parent</label>
                                <input type="text" name="contact" value="{{ old('contact') }}" class="form-control @error('contact') is-valid @enderror">

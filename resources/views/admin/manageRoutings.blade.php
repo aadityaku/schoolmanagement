@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     @foreach ($class as $c)
-        <div class="col-4">
+        <div class="col-4 mt-2">
             <div class="card bg-info">
                 <div class="card-body">
                     <h1 class="text-white">Class :<span class="text-dark">{{$c->classname}}</span></h2>
